@@ -1,0 +1,60 @@
+[
+	{	
+		"name": "first item",
+		"body": [
+			{
+				"title": "inside title",
+				"body": "this is inside body of element",
+				"id": "q-96t4uy5hrsoih6j4-hjty"
+			},
+			{
+				"title": "inside title",
+				"body": "this is inside body of element",
+				"id": "q-96t4uy5hrsoih6j4-hjty2"
+			},
+			{
+				"title": "inside title",
+				"body": "this is inside body of element",
+				"id": "q-96t4uy5hrsoih6j4-hjty3"
+			}
+		]
+	},
+	{
+		"name": "second item",
+		"body": [
+			{
+				"title": "inside title",
+				"body": "this is inside body of element",
+				"id": "q-96t4uy5hrsoih6j4-hjty",
+				"resources": [
+					{
+						"name": "first name",
+						"body": "first body"
+					}
+				]
+			},
+			{
+				"title": "inside title",
+				"body": "this is inside body of element",
+				"id": "q-96t4uy5hrsoih6j4-hjty2",
+				"resources": [
+					{
+						"name": "second name",
+						"body": "second body"
+					}
+				]
+			},
+			{
+				"title": "inside title",
+				"body": "this is inside body of element",
+				"id": "q-96t4uy5hrsoih6j4-hjty3",
+				"resources": [
+					{
+						"name": "third name",
+						"body": "third body"
+					}
+				]
+			}
+		]
+	}
+]

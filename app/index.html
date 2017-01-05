@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>app</title>
+    <meta name="description" content="app description">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <style>
+      body {
+        background-color: #eee;
+        font-family: 'Open Sans';
+        font-size: 16px;
+      }
+
+      ul {
+        margin: 0;
+        list-style: none;
+      }
+      li {
+        color: #666; 
+        max-width: 300px;
+        margin-bottom: 5px;
+        font-weight: 400;
+        background-color: #fff;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 2px;
+        box-shadow: 0px 2px 3px rgba(0,0,0,0.3); 
+      }
+    </style>
+
+    <script>
+      window.Polymer = {
+        dom: 'shadow'
+      };
+    </script>
+    <link rel="manifest" href="/manifest.json">
+    <!--<script src="/app/bower_components/webcomponentsjs/webcomponents-lite.js"></script>-->
+    <link rel="import" href="/app/src/new-app/new-app.html">
+  </head>
+  <body>
+    <!--<new-app></new-app>-->
+    <div id="holder"></div>
+    <script>
+      var jsonData;
+      function loadJSON(callback) {   
+
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open('GET', '/json/resource.json', true); // Replace 'my_data' with the path to your file
+        xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+            callback(xobj.responseText);
+          }
+        };
+        xobj.send(null);
+      }
+
+      loadJSON(function(res) {
+        var jsonData = JSON.parse(res);
+
+        createListItem(jsonData);
+
+        function createListItem(data) {
+          var holder = document.querySelector('#holder');
+          walkArr(data, holder);
+        }
+
+        function walkArr(arr, parentEl) {
+          var ul = document.createElement('ul');
+          
+          arr.forEach(function(item) {
+            if(typeof item === 'object') {
+              walkObj(item, ul);
+            }
+            parentEl.appendChild(ul);
+          });
+        }
+
+        function walkObj(obj, parentEl) {
+          var ul = document.createElement('ul');
+
+          for (var item in obj) {
+            if(Array.isArray(obj[item])) {
+              walkArr(obj[item], ul);
+            } else {
+              var li = document.createElement('li');
+              li.textContent = obj[item];
+              ul.appendChild(li);
+            }
+            parentEl.appendChild(ul);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
